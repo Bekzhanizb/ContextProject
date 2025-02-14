@@ -1,33 +1,32 @@
 package org.example;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
-@ComponentScan(basePackages = "org.example")
 public class ProjectConfig {
 
-    @Bean
-    @Primary
+    @Bean // Inserting element into Context (Container)
+    @Primary // Primary bean
     VideoCard geForce3060() {
         var videoCard = new VideoCard();
-        videoCard.setName("NVidia GeForce GTX 3060");
+        videoCard.setName("NVidia GeForce RTX 3060 Ti");
         return videoCard;
     }
 
     @Bean
     VideoCard geForce4050() {
         var videoCard = new VideoCard();
-        videoCard.setName("NVidia GeForce GTX 4050");
+        videoCard.setName("NVidia GeForce RTX 4050");
         return videoCard;
     }
 
     @Bean
-    VideoCard geForce5080() {
+    VideoCard Ryzen7() {
         var videoCard = new VideoCard();
-        videoCard.setName("NVidia GeForce GTX 5080");
+        videoCard.setName("AMD Ryzen 7 7800X3D");
         return videoCard;
     }
 
@@ -35,7 +34,7 @@ public class ProjectConfig {
     Laptop lenovo() {
         var laptop = new Laptop();
         laptop.setName("Lenovo ThinkPad");
-        laptop.setVideoCard(geForce4050());
+        laptop.setVideoCard(Ryzen7()); // Setting video Ryzen 7
         return laptop;
     }
 
@@ -43,7 +42,14 @@ public class ProjectConfig {
     Laptop gigabyte() {
         var laptop = new Laptop();
         laptop.setName("Gigabyte F5 MF5");
-        laptop.setVideoCard(geForce3060());
+        laptop.setVideoCard(geForce4050()); // Setting video card GeForce 4050
+        return laptop;
+    }
+    @Bean
+    Laptop asus(@Autowired VideoCard videoCard) { // Getting primary bean
+        var laptop = new Laptop();
+        laptop.setName("Asus TUF");
+        laptop.setVideoCard(videoCard); // Setting primary bean
         return laptop;
     }
 }

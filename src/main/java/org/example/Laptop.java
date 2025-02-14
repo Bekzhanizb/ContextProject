@@ -1,13 +1,7 @@
 package org.example;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-@Component
 public class Laptop {
     public String name;
-    @Autowired
     public VideoCard videoCard;
 
     public VideoCard getVideoCard() {
