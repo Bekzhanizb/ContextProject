@@ -13,21 +13,36 @@ public class ProjectConfig {
     @Primary
     VideoCard geForce3060() {
         var videoCard = new VideoCard();
-        videoCard.setName("NVidia GeForce 3060");
+        videoCard.setName("NVidia GeForce GTX 3060");
         return videoCard;
     }
 
     @Bean
     VideoCard geForce4050() {
         var videoCard = new VideoCard();
-        videoCard.setName("NVidia GeForce 4050");
+        videoCard.setName("NVidia GeForce GTX 4050");
         return videoCard;
     }
 
     @Bean
-    Laptop laptop() {
+    VideoCard geForce5080() {
+        var videoCard = new VideoCard();
+        videoCard.setName("NVidia GeForce GTX 5080");
+        return videoCard;
+    }
+
+    @Bean
+    Laptop lenovo() {
         var laptop = new Laptop();
-        laptop.setName("Lenovo");
+        laptop.setName("Lenovo ThinkPad");
+        laptop.setVideoCard(geForce4050());
+        return laptop;
+    }
+
+    @Bean
+    Laptop gigabyte() {
+        var laptop = new Laptop();
+        laptop.setName("Gigabyte F5 MF5");
         laptop.setVideoCard(geForce3060());
         return laptop;
     }
